@@ -6,29 +6,34 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')  # Set matplotlib backend to Agg for Streamlit compatibility
 import io
-
+import cv2
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import inch
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image as ReportLabImage
+from reportlab.lib.styles import getSampleStyleSheet
 # Check for required dependencies
-try:
-    import cv2
-except ImportError:
-    st.error("OpenCV (cv2) is not installed. Please install it using: `pip install opencv-python`")
-    st.stop()
+# try:
+#     import cv2
+# except ImportError:
+#     st.error("OpenCV (cv2) is not installed. Please install it using: `pip install opencv-python`")
+#     st.stop()
 
-try:
-    import matplotlib.pyplot as plt
-except ImportError:
-    st.error("Matplotlib is not installed. Please install it using: `pip install matplotlib`")
-    st.stop()
+# try:
+#     import matplotlib.pyplot as plt
+# except ImportError:
+#     st.error("Matplotlib is not installed. Please install it using: `pip install matplotlib`")
+#     st.stop()
 
-try:
-    from reportlab.pdfgen import canvas
-    from reportlab.lib.pagesizes import A4
-    from reportlab.lib.units import inch
-    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image as ReportLabImage
-    from reportlab.lib.styles import getSampleStyleSheet
-except ImportError:
-    st.error("ReportLab is not installed. Please install it using: `pip install reportlab`")
-    st.stop()
+# try:
+#     from reportlab.pdfgen import canvas
+#     from reportlab.lib.pagesizes import A4
+#     from reportlab.lib.units import inch
+#     from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image as ReportLabImage
+#     from reportlab.lib.styles import getSampleStyleSheet
+# except ImportError:
+#     st.error("ReportLab is not installed. Please install it using: `pip install reportlab`")
+#     st.stop()
 
 # Load the model
 try:
